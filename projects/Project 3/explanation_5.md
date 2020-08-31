@@ -1,0 +1,9 @@
+## Autocomplete with Tries
+
+The autocomplete feature is implemented using a Trie. When a prefix is entered in the text box, I try to find that prefix in the Trie. If found, I start traversing the Trie starting at that node. Every time I hit a node where is_word is True, I add that word to the results set.
+
+I used a set to eliminate duplicates in the result display. I  added a clear() to the ipywidgets code to clear out results from previous searches. This allows the widget to behave as expected when the user presses backspace to change their prefix. Responsiveness could be improved with memoization/caching of previously searched prefixes, at the cost of more space usage. I also added a sort on word length to make the display look a little nicer.
+
+Time complexity: A little hard to measure in terms of the number of words in the word list. It grows with the number of words, but sub-linearly. The worst case is when the prefix is a single letter, especially a common letter like 'e'. This results in having to recursively traverse every child node of e. Assuming words in the English language are evenly distributed by starting letter and ignoring upper/lower case, the worst case would be O(1/26 n), which if we ignore constants results in O(n). Real-world results depend on the length of the provided prefix and the frequency distribution of letters and prefixes in the English language.
+
+Space complexity: Also not straightforward to describe in terms of number of words in the word list. Also grows sub-linearly as more words are added, since we are not duplicating existing prefixes, only adding the unique suffixes to existing prefix branches. Worst case would be adding n words that don't share any prefixes (kind of like Huffman coding). This would be O(n).

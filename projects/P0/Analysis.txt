@@ -1,0 +1,14 @@
+Task0: O(1)
+Time complexity of getting an item from a list is O(1). We're doing this twice, but constants don't matter, so it's O(1).
+
+Task1: O(n)
+We're looping through both the texts and calls lists, so I'm defining n to be the sum of the lenghts of both lists. Within that loop, we're calling set.add() twice, which is O(1). So overall, this is O(n).
+
+Task2: O(n)
+For dict.set() and dict.get(), the worst case is O(n), but this is only if you get really unlucky and the hashing has broken down. The average case is O(1), which I will assume here. I use a loop through the calls list, which is O(n). Each iteration does four O(1) operations, so the entire looping section is O(n). Finding the max is O(n), but is only done once at the end. So overall, this is O(n). If we had used the absolute worse case for getting and setting, this would be O(n^2).
+
+Task3: O(nlogn)
+As with dict, set.add() is O(1) in the average case, which is what I will assume here. The main for loop is O(n), and all the logic inside the loop is O(1), including adding the area code to the set, so the entire looping section is O(n). The answer to part A uses sorted(), which implements TimSort, and has O(nlogn). This is the step that ends up dominating in the limit, so overall, Task3 is O(nlogn).
+
+Task4: O(nlogn)
+Defining n as length of calls plus length of texts, the looping section is O(n), and assuming set.add() is O(1), the looping parts are O(n). The 2nd print statement has a set difference operation, which is O(n), and a sort, which is O(nlogn). In theory, the O(nlogn) term will dominate in the limit, so the correct answer is that Task4 is O(nlogn). In practice, the sort will only have to operate on the subset of numbers that results from the difference, so the longest part will probably be the O(n) for loops. But in the worst case where everyone is a robocaller, the O(nlogn) sort will dominate.
